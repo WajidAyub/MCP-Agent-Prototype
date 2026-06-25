@@ -1,0 +1,360 @@
+/* ArchDiagram.module.css */
+.panel {
+  padding: 24px;
+  animation: fadeInUp 0.5s ease 0.25s both;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 4px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 3px;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.02);
+}
+
+.tab {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.tab:hover { color: var(--text-primary); background: var(--bg-elevated); }
+
+.tabActive {
+  background: #eef2ff;
+  color: #4f46e5;
+  border: 1px solid #c7d2fe;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+/* Diagram container */
+.diagram {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  max-height: 420px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(99,102,241,0.3) transparent;
+}
+
+.diagram::-webkit-scrollbar { width: 4px; }
+.diagram::-webkit-scrollbar-track { background: transparent; }
+.diagram::-webkit-scrollbar-thumb {
+  background: var(--border-bright);
+  border-radius: 4px;
+}
+
+/* Node group */
+.nodeGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* Arrow */
+.arrow {
+  width: 2px;
+  height: 20px;
+  background: linear-gradient(to bottom, #c7d2fe, #bae6fd);
+  position: relative;
+}
+.arrow::after {
+  content:'';
+  position: absolute;
+  bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 7px solid #bae6fd;
+}
+
+.arrowShort {
+  width: 2px;
+  height: 14px;
+  background: linear-gradient(to bottom, #e2e8f0, #e2e8f0);
+}
+
+/* Base node */
+.node {
+  width: 100%;
+  max-width: 260px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  text-align: center;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.nodeSmall {
+  max-width: 140px;
+  padding: 8px 10px;
+}
+
+.nodeActive {
+  animation: node-active-arch 2s ease-in-out infinite;
+}
+
+@keyframes node-active-arch {
+  0%,100% { box-shadow: 0 0 0 0 transparent; }
+  50%      { box-shadow: 0 4px 12px -2px rgba(124, 58, 237, 0.2); }
+}
+
+.nodeLabel {
+  font-size: 13px;
+  font-weight: 800;
+  margin-bottom: 2px;
+  line-height: 1.2;
+}
+
+.nodeSub {
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+/* Type variants */
+.type_neutral {
+  background: var(--bg-surface);
+  border-color: var(--border);
+  color: var(--text-secondary);
+}
+.type_purple {
+  background: #faf5ff;
+  border-color: #e9d5ff;
+  color: #7e22ce;
+}
+.type_indigo {
+  background: #eef2ff;
+  border-color: #c7d2fe;
+  color: #4338ca;
+}
+.type_teal {
+  background: #f0fdfa;
+  border-color: #99f6e4;
+  color: #0f766e;
+}
+.type_amber {
+  background: #fffbeb;
+  border-color: #fde68a;
+  color: #b45309;
+}
+.type_green {
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+  color: #047857;
+}
+
+/* Active overrides per type */
+.type_purple.nodeActive { box-shadow: 0 4px 12px rgba(126, 34, 206, 0.15) !important; animation: none; }
+.type_amber.nodeActive  { box-shadow: 0 4px 12px rgba(180, 83, 9, 0.15) !important; animation: none; }
+.type_teal.nodeActive   { box-shadow: 0 4px 12px rgba(15, 118, 110, 0.15) !important; animation: none; }
+.type_green.nodeActive  { box-shadow: 0 4px 12px rgba(4, 120, 87, 0.15) !important; animation: none; }
+.type_indigo.nodeActive { box-shadow: 0 4px 12px rgba(67, 56, 202, 0.15) !important; animation: none; }
+
+/* Services row (Part 1) */
+.servicesRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: center;
+  padding: 6px 0;
+  width: 100%;
+}
+
+.serviceNode {
+  padding: 6px 8px;
+  border-radius: 8px;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  text-align: center;
+  transition: all 0.35s ease;
+  flex: 1;
+  min-width: 60px;
+  max-width: 100px;
+}
+
+.serviceActive {
+  background: color-mix(in srgb, var(--svc-color, #ecfdf5) 20%, #ffffff);
+  border-color: var(--svc-color, #a7f3d0);
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--svc-color, #a7f3d0) 20%, transparent);
+  animation: svc-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes svc-pulse {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-2px); }
+}
+
+.svcLabel { font-size: 10px; font-weight: 800; color: #047857; margin-bottom: 1px; line-height: 1.2; }
+.serviceActive .svcLabel { color: var(--svc-text, #047857); }
+
+.svcSub { font-size: 9px; color: var(--text-muted); }
+.serviceActive .svcSub { color: color-mix(in srgb, var(--svc-text, #047857) 80%, transparent); }
+
+/* ── Part 2 specific ── */
+
+.loopBox {
+  width: 100%;
+  border: 1.5px dashed var(--border-bright);
+  border-radius: 14px;
+  padding: 14px 10px 12px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  background: var(--bg-elevated);
+}
+
+.loopBoxLabel {
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: var(--bg-surface);
+  padding: 0 8px;
+  white-space: nowrap;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Decide row: 3-col  [No←] [DECIDE] [→Yes] */
+.decideRow {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  margin: 8px 0;
+}
+
+.decideCenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Left "No" branch */
+.noBranch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.noBranchLine {
+  width: 2px;
+  height: 16px;
+  background: #a7f3d0;
+}
+
+.finalBox {
+  padding: 7px 10px;
+  border-radius: 8px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.finalBoxActive {
+  background: #ecfdf5;
+  border-color: #6ee7b7;
+  color: #047857;
+  box-shadow: 0 2px 6px rgba(5, 150, 105, 0.1);
+}
+
+/* Right "Yes" branch */
+.yesBranch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.yesBranchLine {
+  width: 2px;
+  height: 16px;
+  background: #bae6fd;
+}
+
+/* Loop back label */
+.loopBack {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 8px;
+  font-family: var(--font-mono);
+}
+
+/* Footer */
+.footer {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* ── Part 3 Stack diagram ── */
+
+/* Wide block variant for Part 3 layer nodes */
+.nodeWideBlock {
+  max-width: 100% !important;
+  text-align: left;
+  padding: 12px 16px !important;
+}
+
+/* Chip row inside a Part 3 layer node */
+.p3Chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 8px;
+}
+
+/* Individual chip inside a Part 3 layer node */
+.p3Chip {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 99px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}

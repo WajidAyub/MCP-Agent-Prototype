@@ -1,0 +1,245 @@
+/* App.module.css */
+
+/* Hero section */
+.hero {
+  padding: 48px 0 32px;
+  text-align: center;
+  animation: fadeInUp 0.6s ease;
+}
+
+.heroTagline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #a78bfa;
+  background: rgba(124,58,237,0.1);
+  border: 1px solid rgba(124,58,237,0.25);
+  border-radius: 99px;
+  padding: 6px 16px;
+  margin-bottom: 20px;
+  letter-spacing: 0.02em;
+}
+
+.taglineIcon {
+  font-size: 16px;
+  background: linear-gradient(135deg, #7c3aed, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heroTitle {
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  margin-bottom: 16px;
+}
+
+.heroDesc {
+  font-size: 15px;
+  color: var(--text-secondary);
+  max-width: 680px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.heroDesc strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Part 1 + 2 badges */
+.partBadges {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.partBadge {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: 99px;
+  border: 1px solid;
+}
+
+.partBadge1 {
+  background: rgba(79,70,229,0.12);
+  border-color: rgba(79,70,229,0.3);
+  color: #a5b4fc;
+}
+
+.partBadge2 {
+  background: rgba(6,182,212,0.1);
+  border-color: rgba(6,182,212,0.28);
+  color: #67e8f9;
+}
+
+.partBadge3 {
+  background: rgba(16,185,129,0.1);
+  border-color: rgba(16,185,129,0.28);
+  color: #6ee7b7;
+}
+
+.partBadgeSep {
+  color: #374151;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+
+/* Query row */
+.queryRow {
+  margin-bottom: 24px;
+}
+
+/* Navigation Bar */
+.navBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.navBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.navBtn:hover {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  transform: translateY(-1px);
+}
+
+.navBtnActive {
+  background: #eef2ff;
+  border-color: #c7d2fe;
+  color: #4f46e5;
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.15);
+}
+
+.navIcon {
+  font-size: 16px;
+}
+
+/* Page Containers */
+.pageContainer {
+  min-height: 500px;
+  animation: fadeIn 0.4s ease;
+}
+
+.pageHome,
+.pageReasoning,
+.pageTools,
+.pageArchitecture {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Home Layout */
+.homeOutput {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.homeOutputLeft,
+.homeOutputRight {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .homeOutput {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Part 3 divider ── */
+.dividerRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 52px 0 0;
+}
+
+.dividerLine {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(99,102,241,0.25), transparent);
+}
+
+.dividerLabel {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #4b5563;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dividerLabel::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #10b981, #06b6d4);
+  display: inline-block;
+}
+
+/* Footer note */
+.footerNote {
+  margin-top: 32px;
+  text-align: center;
+  font-size: 12px;
+  color: #374151;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.footerNote code {
+  background: rgba(99,102,241,0.12);
+  padding: 1px 6px;
+  border-radius: 4px;
+  color: #a78bfa;
+  font-size: 11px;
+}
+
+.footerIcon { font-size: 14px; }

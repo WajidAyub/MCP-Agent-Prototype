@@ -1,0 +1,292 @@
+/* ToolGrid.module.css */
+.panel {
+  padding: 24px;
+  animation: fadeInUp 0.5s ease 0.15s both;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.toolCount {
+  font-size: 12px;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+/* Tool Card */
+.card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  transition: all 0.35s ease;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  background: radial-gradient(ellipse at top left, var(--tool-glow, transparent), transparent 70%);
+}
+
+.cardActive {
+  border-color: var(--tool-color, #4338ca);
+  box-shadow: 0 4px 12px -2px var(--tool-glow, rgba(67, 56, 202, 0.1));
+  background: var(--bg-elevated);
+  animation: card-pulse 3s ease-in-out infinite;
+}
+.cardActive::before { opacity: 1; }
+
+@keyframes card-pulse {
+  0%,100% { box-shadow: 0 2px 8px -2px var(--tool-glow, rgba(67, 56, 202, 0.1)); }
+  50%      { box-shadow: 0 8px 16px -4px var(--tool-glow, rgba(67, 56, 202, 0.2)); }
+}
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.iconWrap {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+  transition: all 0.35s ease;
+}
+
+.iconActive { }
+
+.icon { font-size: 18px; }
+
+.activeBadge {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 2px solid var(--bg-surface);
+  animation: pulse-badge 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-badge {
+  0%,100% { transform: scale(1); opacity: 1; }
+  50%      { transform: scale(1.3); opacity: 0.7; }
+}
+
+.toolInfo { min-width: 0; }
+
+.toolName {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+.cardActive .toolName { color: var(--text-primary); }
+
+.toolSub {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+.cardActive .toolSub { color: var(--text-secondary); }
+
+/* Metrics */
+.metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  animation: fadeIn 0.4s ease;
+}
+
+.metric {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+}
+
+.metricLabel { color: var(--text-muted); }
+.metricValue { color: #4338ca; font-family: var(--font-mono); font-weight: 600; }
+
+.connStatus {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #059669;
+  margin-top: 4px;
+}
+
+.connDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  animation: pulse-badge 1.5s ease-in-out infinite;
+}
+
+/* Idle bar */
+.idleBar {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.idleDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--border-bright);
+}
+
+/* MCP Badge */
+.mcpBadge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.mcpDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7c3aed, #06b6d4);
+  flex-shrink: 0;
+}
+
+/* ── Part 2: ReAct Loop additions ── */
+
+/* Call summary bar */
+.callSummary {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  color: var(--text-secondary);
+  background: #eef2ff;
+  border: 1px solid #c7d2fe;
+  border-radius: 8px;
+  padding: 6px 12px;
+  margin-bottom: 14px;
+}
+
+.callSummaryDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1, #0ea5e9);
+  flex-shrink: 0;
+  animation: pulse-badge 1.5s ease-in-out infinite;
+}
+
+.callSummary strong { color: #4338ca; }
+
+/* Acting card — extra bright ring */
+.cardActing {
+  animation: acting-flash 0.6s ease-in-out infinite !important;
+}
+
+@keyframes acting-flash {
+  0%,100% { box-shadow: 0 0 12px var(--tool-glow, rgba(6,182,212,0.3)); }
+  50%      { box-shadow: 0 0 32px var(--tool-glow, rgba(6,182,212,0.65)); }
+}
+
+/* Acting ring (larger, animated border around icon) */
+.actingRing {
+  position: absolute;
+  inset: -5px;
+  border-radius: 14px;
+  border: 2px solid;
+  opacity: 0.8;
+  animation: acting-ring-spin 1.2s linear infinite;
+}
+
+@keyframes acting-ring-spin {
+  0%   { transform: rotate(0deg);   opacity: 0.8; }
+  50%  { opacity: 0.4; }
+  100% { transform: rotate(360deg); opacity: 0.8; }
+}
+
+/* Call count badge */
+.callBadge {
+  font-size: 10px;
+  font-weight: 700;
+  border: 1px solid;
+  border-radius: 99px;
+  padding: 2px 8px;
+  margin-left: auto;
+  font-family: var(--font-mono);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.callBadgePulse {
+  animation: counter-pulse 0.4s ease;
+}
+
+@keyframes counter-pulse {
+  0%   { transform: scale(1);    }
+  50%  { transform: scale(1.12); }
+  100% { transform: scale(1);    }
+}
+
+/* Acting banner */
+.actingBanner {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #0369a1;
+  background: #e0f2fe;
+  border: 1px solid #bae6fd;
+  border-radius: 6px;
+  padding: 5px 10px;
+  margin-bottom: 2px;
+  animation: fadeIn 0.25s ease;
+}
+
+.actingDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  animation: blink 0.6s step-end infinite;
+  flex-shrink: 0;
+}
+

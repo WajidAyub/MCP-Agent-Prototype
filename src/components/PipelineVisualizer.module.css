@@ -1,0 +1,236 @@
+/* PipelineVisualizer.module.css */
+.panel {
+  padding: 24px;
+  animation: fadeInUp 0.5s ease 0.1s both;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.activeChip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.spinDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-purple);
+  animation: pulse-dot 1.2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.4; transform: scale(0.7); }
+}
+
+/* Pipeline */
+.pipeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.stageRow {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* Connector */
+.connector {
+  width: 2px;
+  height: 20px;
+  background: var(--border);
+  margin-left: 23px;
+  transition: background 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+.connectorActive {
+  background: linear-gradient(to bottom, var(--accent-violet), var(--accent-cyan));
+}
+.connectorActive::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 40px;
+  background: linear-gradient(to bottom, transparent, rgba(79, 70, 229, 0.4), transparent);
+  animation: flow-down 1s ease forwards;
+}
+
+/* Stage Node */
+.stageNode {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+  gap: 12px;
+}
+
+.nodeLeft {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.nodeIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+  border: 1px solid var(--border);
+  background: var(--bg-surface);
+  color: var(--text-muted);
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.nodeInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.nodeName {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+  line-height: 1.3;
+}
+
+.nodeDesc {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 3px;
+  line-height: 1.4;
+  animation: fadeIn 0.3s ease;
+}
+.nodeDescDone {
+  color: var(--text-secondary);
+}
+
+.nodeRight {
+  flex-shrink: 0;
+}
+
+/* Status variants */
+.status_pending .nodeIcon { opacity: 0.6; }
+.status_pending .nodeName { color: var(--text-muted); }
+
+.status_active {
+  background: #eef2ff;
+  border-color: #c7d2fe;
+  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.02);
+}
+.status_active .nodeIcon {
+  background: #fff;
+  border-color: #a5b4fc;
+  color: #4f46e5;
+  box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.1);
+}
+.status_active .nodeName { color: #3730a3; }
+.status_active .nodeDesc { color: #4f46e5; }
+
+.status_done {
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+}
+.status_done .nodeIcon {
+  background: #fff;
+  border-color: #6ee7b7;
+  color: #059669;
+  font-size: 14px;
+  font-weight: 700;
+  box-shadow: 0 2px 4px rgba(5, 150, 105, 0.05);
+}
+.status_done .nodeName { color: #065f46; }
+
+.status_error {
+  background: #fff1f2;
+  border-color: #fecdd3;
+}
+.status_error .nodeIcon {
+  background: #fff;
+  border-color: #fda4af;
+  color: #e11d48;
+}
+.status_error .nodeName { color: #9f1239; }
+
+/* Status pills */
+.checkMark  { color: #059669; font-weight: 700; font-size: 14px; }
+.activePill { font-size: 11px; font-weight: 600; color: #4338ca; background: #e0e7ff; padding: 2px 8px; border-radius: 99px; border: 1px solid #c7d2fe; white-space: nowrap; }
+.pendingPill{ font-size: 11px; font-weight: 500; color: var(--text-muted); white-space: nowrap; }
+.errorPill  { font-size: 11px; font-weight: 600; color: #e11d48; background: #ffe4e6; padding: 2px 8px; border-radius: 99px; border: 1px solid #fecdd3; white-space: nowrap; }
+
+/* Spinner */
+.spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #e0e7ff;
+  border-top-color: #4f46e5;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* Log */
+.logSection {
+  margin-top: 20px;
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+}
+
+.logTitle {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.log {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 160px;
+  overflow-y: auto;
+}
+
+.logEntry {
+  display: flex;
+  gap: 8px;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  align-items: flex-start;
+  animation: slide-in-left 0.3s ease both;
+  line-height: 1.5;
+}
+
+.logTime   { color: var(--text-dim); flex-shrink: 0; }
+.logStage  { font-weight: 600; flex-shrink: 0; }
+.logDetail { color: var(--text-secondary); }
+
+.logStage_parsing     { color: #6366f1; }
+.logStage_discovering { color: #0284c7; }
+.logStage_connecting  { color: #d97706; }
+.logStage_retrieving  { color: #059669; }
+.logStage_generating  { color: #4338ca; }
+.logStage_done        { color: #047857; }
+.logStage_error       { color: #e11d48; }
