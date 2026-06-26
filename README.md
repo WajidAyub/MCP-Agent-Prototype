@@ -27,42 +27,6 @@ A 4-layer clickable architecture diagram. Click any node to reveal:
 - Install commands
 - How it connects to adjacent layers
 
-```mermaid
-graph TD
-    %% Bauhaus Styling
-    classDef frontend fill:#E3000F,stroke:#111,stroke-width:3px,color:#fff,font-family:monospace,font-weight:bold
-    classDef agent fill:#FFD100,stroke:#111,stroke-width:3px,color:#111,font-family:monospace,font-weight:bold
-    classDef mcp fill:#005A9C,stroke:#111,stroke-width:3px,color:#fff,font-family:monospace,font-weight:bold
-    classDef db fill:#F4F0EA,stroke:#111,stroke-width:3px,color:#111,font-family:monospace,stroke-dasharray: 5 5
-
-    %% Nodes
-    UI["Layer 1: Frontend UI<br/>(React / Vite)"]:::frontend
-    Agent["Layer 2: ReAct Loop<br/>(Claude Sonnet)"]:::agent
-    
-    subgraph MCP ["Layer 3: Protocol Abstraction"]
-        PostgresMCP["PostgreSQL MCP"]:::mcp
-        SlackMCP["Slack MCP"]:::mcp
-        CRMMCP["CRM MCP"]:::mcp
-    end
-    
-    subgraph DataStores ["Layer 4: Enterprise Silos"]
-        DB[(Sales DB)]:::db
-        Slack[Team Slack]:::db
-        Salesforce[Salesforce CRM]:::db
-    end
-
-    %% Connections
-    UI <-->|Natural Language| Agent
-    Agent <-->|JSON Tool Calls| PostgresMCP
-    Agent <-->|JSON Tool Calls| SlackMCP
-    Agent <-->|JSON Tool Calls| CRMMCP
-    
-    PostgresMCP <-->|SQL Queries| DB
-    SlackMCP <-->|API POST| Slack
-    CRMMCP <-->|REST API| Salesforce
-```
-
----
 
 ## 🚀 Getting Started
 
